@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/need-for-drive/static/css/main.cd50b5c5.chunk.css",
+    "main.js": "/need-for-drive/static/js/main.2678bfe6.chunk.js",
+    "main.js.map": "/need-for-drive/static/js/main.2678bfe6.chunk.js.map",
+    "runtime-main.js": "/need-for-drive/static/js/runtime-main.65041ad7.js",
+    "runtime-main.js.map": "/need-for-drive/static/js/runtime-main.65041ad7.js.map",
+    "static/js/2.b2d49a27.chunk.js": "/need-for-drive/static/js/2.b2d49a27.chunk.js",
+    "static/js/2.b2d49a27.chunk.js.map": "/need-for-drive/static/js/2.b2d49a27.chunk.js.map",
+    "index.html": "/need-for-drive/index.html",
+    "static/css/main.cd50b5c5.chunk.css.map": "/need-for-drive/static/css/main.cd50b5c5.chunk.css.map",
+    "static/js/2.b2d49a27.chunk.js.LICENSE.txt": "/need-for-drive/static/js/2.b2d49a27.chunk.js.LICENSE.txt",
+    "static/media/main.sass": "/need-for-drive/static/media/Roboto-Regular.03523cf5.ttf",
+    "static/media/slide1.99555a72.jpg": "/need-for-drive/static/media/slide1.99555a72.jpg",
+    "static/media/slide2.8e2236fc.jpg": "/need-for-drive/static/media/slide2.8e2236fc.jpg",
+    "static/media/slide3.dd5c268f.jpg": "/need-for-drive/static/media/slide3.dd5c268f.jpg",
+    "static/media/slide4.2cc2a6fa.jpg": "/need-for-drive/static/media/slide4.2cc2a6fa.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.65041ad7.js",
+    "static/js/2.b2d49a27.chunk.js",
+    "static/css/main.cd50b5c5.chunk.css",
+    "static/js/main.2678bfe6.chunk.js"
+  ]
+}
