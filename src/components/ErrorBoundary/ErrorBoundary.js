@@ -1,7 +1,7 @@
 import React from 'react';
 import {ErrorIndicator} from './ErrorIndicator';
 
-export class ErrorBoundry extends React.Component {
+export class ErrorBoundary extends React.Component {
     constructor() {
         super()
         this.state = {

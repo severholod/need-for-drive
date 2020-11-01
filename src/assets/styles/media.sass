@@ -1,0 +1,97 @@
+@media (max-width: 1199px)
+    .main-section
+        flex: 0 1 100%
+        padding: 32px
+    .slider
+        flex: 0 0 410px
+        &-item
+            padding: 0 64px
+            &__title
+                font-size: 32px
+            &__description
+                font-size: 22px
+        &-nav
+            width: 32px
+    .menu
+        width: calc(100% - 474px)
+@media (max-width: 991px)
+    .slider
+        display: none
+    .menu
+        width: calc(100% - 64px)
+        padding-left: 33px
+@media (max-width: 575px)
+    .menu
+        padding-left: 28px
+    .header, .footer
+        flex-direction: column
+        align-items: flex-end
+    .header .logo
+        margin-bottom: 8px
+    .footer
+        .phone
+            order: 1
+            margin-bottom: 8px
+        .copyright
+            order: 2
+    .main-section
+        padding: 15px
+        &__title
+            font-size: 32px
+            margin: 0 0 16px
+        &__subtitle
+            font-size: 18px
+            margin: 0 0 32px
+@media(max-width: 449px)
+    .main-section
+        &__middle
+            margin: -50px -15px 0
+            .btn
+                width: 100%
+                border-radius: 0
+        &__title, &__subtitle
+            padding: 0 15px
+    .footer
+        background: $dark
+        margin: 0 -15px -15px
+        padding: 16px
+        .link
+            +link-styles($light-green, #fff)
+        .copyright
+            color: #fff
+    .navigation
+        width: 0
+        &.active
+            //width: 64px
+    .sidebar
+        position: absolute
+        padding: 28px 10px 10px
+        background: transparent
+        height: auto
+        .nav-toggler
+            &__line
+                background: #121212
+        .lang-toggler
+            opacity: 0
+            visibility: hidden
+    .active .sidebar
+        height: 100%
+        width: 64px
+        .lang-toggler
+            opacity: 1
+            visibility: visible
+            transition: all 0s ease-in-out .15s
+        .nav-toggler
+            &__line
+                background: #fff
+    .menu
+        padding-top: 80px
+        justify-content: flex-start
+        left: 0
+        width: 100%
+        &__item
+            a
+                font-size: 22px
+    .lang-toggler
+        width: 30px
+        height: 30px

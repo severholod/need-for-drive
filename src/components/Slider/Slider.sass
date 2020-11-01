@@ -1,0 +1,85 @@
+.slider
+    flex: 0 0 calc(50% - 32px)
+    position: relative
+    &-items
+        height: 100%
+        position: relative
+    &-item
+        height: 100%
+        width: 100%
+        padding: 0 96px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        background-repeat: no-repeat
+        background-position: center
+        background-size: cover
+        opacity: 0
+        visibility: hidden
+        transition: all .5s ease-in-out
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 1
+        &.active
+            opacity: 1
+            visibility: visible
+            position: relative
+        &__title
+            font-weight: 500
+            font-size: 40px
+            color: #fff
+            margin-bottom: 10px
+        &__description
+            font-weight: 300
+            font-size: 24px
+            color: #eee
+            margin-bottom: 32px
+        &::after
+            content: ''
+            display: block
+            position: absolute
+            top: 0
+            left: 0
+            bottom: 0
+            right: 0
+            background: linear-gradient(180deg,transparent,transparent .01%,#000)
+            z-index: -1
+    &-nav
+        width: 64px
+        position: absolute
+        top: 0
+        bottom: 0
+        background-image: url(../../assets/img/slider-arrow.png)
+        background-repeat: no-repeat
+        background-position: center
+        background-color: transparent
+        border: none
+        outline: none
+        cursor: pointer
+        transition: background-color .25s ease
+        z-index: 2
+        &:hover
+            background-color: rgba(14,194,97, .2)
+    &-prev
+        left: 0
+    &-next
+        right: 0
+        transform: rotate(180deg)
+    &-dots
+        position: absolute
+        bottom: 32px
+        left: 50%
+        transform: translateX(-50%)
+        display: flex
+        z-index: 2
+    &-dot
+        display: block
+        width: 8px
+        height: 8px
+        margin: 0 4px
+        border-radius: 100%
+        background-color: #fff
+        cursor: pointer
+        &.active
+            background-color: $light-green
