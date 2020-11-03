@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-import {Main} from '../../pages/Main';
-import {Order} from '../../pages/Order';
+import {Main} from '../../pages/Main'
+import {Order} from '../../pages/Order'
 import '../../assets/styles/main.sass'
 
 export const App = () => {

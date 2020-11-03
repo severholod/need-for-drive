@@ -6,7 +6,7 @@ import {Menu} from '../Menu/Menu';
 export let Navigation = ({isMenuActive, onMenuStatusChange}) => {
     return (
         <div className={`navigation ${isMenuActive ? 'active' : ''}`}>
-            <div className="overlay"></div>
+            <div className="overlay" onClick={onMenuStatusChange}></div>
             <Menu onMenuStatusChange={onMenuStatusChange}/>
             <aside className="sidebar">
                 <div className="nav-toggler" onClick={onMenuStatusChange}>
