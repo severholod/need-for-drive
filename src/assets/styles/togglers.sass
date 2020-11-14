@@ -1,0 +1,53 @@
+.nav-toggler
+    height: 20px
+    width: 24px
+    cursor: pointer
+    position: relative
+    &__line
+        display: block
+        width: 100%
+        height: 3px
+        background: #fff
+        border-radius: 3px
+        opacity: 1
+        transition: all .25s ease-in-out
+        transform: rotate(0)
+        position: absolute
+        left: 0
+        &_first
+            top: 0
+        &_second
+            top: calc(50% - 1.5px)
+        &_third
+            bottom: 0
+@media(min-width: 1200px)
+    .nav-toggler:hover .nav-toggler__line
+        background: $light-green
+.active .nav-toggler
+    &__line
+        top: calc(50% - 1.5px)
+        &_first
+            transform: rotate(45deg)
+        &_second
+            opacity: 0
+        &_third
+            transform: rotate(-45deg)
+.lang-toggler
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 48px
+    height: 48px
+    font-weight: bold
+    font-size: 13px
+    color: $light-green
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    cursor: pointer
+    border: 1px solid transparent
+    border-radius: 100%
+    transition: border .25s ease
+    &:hover
+        border: 1px solid #eee
+        color: #fff
+    &:active
+        color: $light-green

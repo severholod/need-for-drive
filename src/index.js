@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 // entities
-import {store} from './store'
-import {ErrorBoundry} from './components/ErrorBoundry'
+import {store} from './redux/store'
+import {ErrorBoundary} from './components/ErrorBoundary/ErrorBoundary'
 import {ApiFactoryService} from './services/ApiFactoryService'
 import {ApiFactoryProvider} from './services/ApiFactoryContext'
 import {App} from './components/App/App'
@@ -16,13 +16,13 @@ const apiFactoryService = new ApiFactoryService()
 
 ReactDOM.render(
     <Provider store={store}>
-        <ErrorBoundry>
+        <ErrorBoundary>
             <ApiFactoryProvider value={apiFactoryService}>
                 <Router>
                     <App />
                 </Router>
             </ApiFactoryProvider>
-        </ErrorBoundry>
+        </ErrorBoundary>
     </Provider>,
     $root
 )

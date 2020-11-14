@@ -1,0 +1,14 @@
+=link-styles($color, $hover-color)
+    color: $color
+    &:hover
+        color: $hover-color
+.link
+    font-weight: normal
+    font-size: 13px
+    transition: color .25s ease
+    &_black
+        +link-styles($black, $light-green)
+    &_white
+        +link-styles(#fff, $light-green)
+    &_green
+        +link-styles($light-green, #fff)

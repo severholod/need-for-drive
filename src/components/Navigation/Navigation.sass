@@ -1,0 +1,28 @@
+.navigation
+    flex-shrink: 0
+    width: 64px
+.overlay
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(21, 27, 31, 0.81)
+    opacity: 0
+    visibility: hidden
+    transition: all .25s ease-in-out
+    z-index: 8
+.sidebar
+    display: flex
+    height: 100%
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    padding: 40px 5px 15px
+    background: $dark
+    position: relative
+    z-index: 11
+.active .overlay
+    opacity: 1
+    visibility: visible
+    
