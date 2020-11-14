@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/need-for-drive/static/css/main.ef2f3278.chunk.css",
-    "main.js": "/need-for-drive/static/js/main.05ce1232.chunk.js",
-    "main.js.map": "/need-for-drive/static/js/main.05ce1232.chunk.js.map",
+    "main.css": "/need-for-drive/static/css/main.1a02162a.chunk.css",
+    "main.js": "/need-for-drive/static/js/main.1fb5802c.chunk.js",
+    "main.js.map": "/need-for-drive/static/js/main.1fb5802c.chunk.js.map",
     "runtime-main.js": "/need-for-drive/static/js/runtime-main.65041ad7.js",
     "runtime-main.js.map": "/need-for-drive/static/js/runtime-main.65041ad7.js.map",
-    "static/js/2.b2d49a27.chunk.js": "/need-for-drive/static/js/2.b2d49a27.chunk.js",
-    "static/js/2.b2d49a27.chunk.js.map": "/need-for-drive/static/js/2.b2d49a27.chunk.js.map",
+    "static/js/2.4462b73a.chunk.js": "/need-for-drive/static/js/2.4462b73a.chunk.js",
+    "static/js/2.4462b73a.chunk.js.map": "/need-for-drive/static/js/2.4462b73a.chunk.js.map",
     "index.html": "/need-for-drive/index.html",
-    "static/css/main.ef2f3278.chunk.css.map": "/need-for-drive/static/css/main.ef2f3278.chunk.css.map",
-    "static/js/2.b2d49a27.chunk.js.LICENSE.txt": "/need-for-drive/static/js/2.b2d49a27.chunk.js.LICENSE.txt",
+    "static/css/main.1a02162a.chunk.css.map": "/need-for-drive/static/css/main.1a02162a.chunk.css.map",
+    "static/js/2.4462b73a.chunk.js.LICENSE.txt": "/need-for-drive/static/js/2.4462b73a.chunk.js.LICENSE.txt",
     "static/media/main.sass": "/need-for-drive/static/media/Roboto-Regular.03523cf5.ttf",
-    "static/media/slide1.99555a72.jpg": "/need-for-drive/static/media/slide1.99555a72.jpg",
-    "static/media/slide2.8e2236fc.jpg": "/need-for-drive/static/media/slide2.8e2236fc.jpg",
-    "static/media/slide3.dd5c268f.jpg": "/need-for-drive/static/media/slide3.dd5c268f.jpg",
-    "static/media/slide4.2cc2a6fa.jpg": "/need-for-drive/static/media/slide4.2cc2a6fa.jpg"
+    "static/media/locIcon.e2f3c468.svg": "/need-for-drive/static/media/locIcon.e2f3c468.svg",
+    "static/media/slide1.db967d62.jpg": "/need-for-drive/static/media/slide1.db967d62.jpg",
+    "static/media/slide2.9acb2160.jpg": "/need-for-drive/static/media/slide2.9acb2160.jpg",
+    "static/media/slide3.6e69db0a.jpg": "/need-for-drive/static/media/slide3.6e69db0a.jpg",
+    "static/media/slide4.45ed0488.jpg": "/need-for-drive/static/media/slide4.45ed0488.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.65041ad7.js",
-    "static/js/2.b2d49a27.chunk.js",
-    "static/css/main.ef2f3278.chunk.css",
-    "static/js/main.05ce1232.chunk.js"
+    "static/js/2.4462b73a.chunk.js",
+    "static/css/main.1a02162a.chunk.css",
+    "static/js/main.1fb5802c.chunk.js"
   ]
 }
