@@ -1,11 +1,12 @@
 import React from 'react'
-import {menuStatusChange} from '../../redux/actions';
-import {connect} from 'react-redux';
-import {Menu} from '../Menu/Menu';
+import {menuStatusChange} from '../../redux/actions'
+import {connect} from 'react-redux'
+import {Menu} from '../Menu/Menu'
+import classNames from 'classnames'
 
 export let Navigation = ({isMenuActive, onMenuStatusChange}) => {
     return (
-        <div className={`navigation ${isMenuActive ? 'active' : ''}`}>
+        <div className={classNames('navigation', {'active':isMenuActive})}>
             <div className="overlay" onClick={onMenuStatusChange}></div>
             <Menu onMenuStatusChange={onMenuStatusChange}/>
             <aside className="sidebar">
@@ -21,11 +22,7 @@ export let Navigation = ({isMenuActive, onMenuStatusChange}) => {
         </div>
     )
 }
-const mapStateToProps = ({isMenuActive}) => {
-    return {
-        isMenuActive
-    }
-}
+const mapStateToProps = ({isMenuActive}) => ({isMenuActive})
 const mapDispatchToProps = {
     onMenuStatusChange: menuStatusChange,
 }

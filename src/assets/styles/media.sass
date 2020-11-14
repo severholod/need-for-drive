@@ -1,7 +1,14 @@
+@media (max-width: 1400px)
+    .order
+        &-step
+            padding: 32px 64px
 @media (max-width: 1199px)
+    .header, .footer
+        padding: 32px
     .main-section
         flex: 0 1 100%
-        padding: 32px
+        &__middle
+            padding: 0 32px
     .slider
         flex: 0 0 410px
         &-item
@@ -14,16 +21,38 @@
             width: 32px
     .menu
         width: calc(100% - 474px)
+    .order
+        &-step
+            padding: 32px
+            width: calc(100% - 320px)
+        &-info
+            padding: 32px
+            flex: 0 0 320px
+            max-width: 320px
+    .steps
+        padding: 0 32px
 @media (max-width: 991px)
     .slider
         display: none
     .menu
         width: calc(100% - 64px)
         padding-left: 33px
+@media(max-width: 767px)
+    .order
+        &-content
+            flex-direction: column
+            overflow: auto
+        &-step
+            width: 100%
+            overflow: visible
+        &-info
+            flex: 0 0 auto
+            max-width: 100%
 @media (max-width: 575px)
     .header, .footer
         flex-direction: column
         align-items: flex-end
+        padding: 15px
     .header .logo
         margin-bottom: 8px
     .footer
@@ -33,17 +62,26 @@
         .copyright
             order: 2
     .main-section
-        padding: 15px
+        &__middle
+            padding: 0 15px
         &__title
             font-size: 32px
             margin: 0 0 16px
         &__subtitle
             font-size: 18px
             margin: 0 0 32px
+    .steps
+        padding: 0 15px
+    .order
+        &-step
+          padding: 32px 15px 8px
+        &-info
+            padding: 32px 15px
 @media(max-width: 449px)
     .main-section
         &__middle
-            margin: -50px -15px 0
+            margin-top: -50px
+            padding: 0
             .btn
                 width: 100%
                 border-radius: 0
@@ -51,7 +89,6 @@
             padding: 0 15px
     .footer
         background: $dark
-        margin: 0 -15px -15px
         padding: 16px
         .link
             +link-styles($light-green, #fff)
@@ -60,7 +97,6 @@
     .navigation
         width: 0
         &.active
-            //width: 64px
     .sidebar
         position: absolute
         padding: 28px 10px 10px
@@ -93,3 +129,14 @@
     .lang-toggler
         width: 30px
         height: 30px
+    .order
+        flex: 0 1 100%
+        max-width: 100%
+    .form
+        &-item
+            width: 100%
+            &__input
+                min-width: 150px
+                width: 100%
+            &__label
+                flex-shrink: 0

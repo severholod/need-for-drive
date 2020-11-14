@@ -1,0 +1,32 @@
+.steps
+    border-top: 1px solid #EEE
+    border-bottom: 1px solid #EEE
+    padding: 0px 64px
+    &-list
+        margin: 0
+        padding: 8px 0
+        list-style: none
+        display: flex
+        overflow: auto
+        &__item
+            font-weight: bold
+            font-size: 14px
+            color: $gray
+            flex: 0 0 auto
+            a
+                font-size: inherit
+                transition: color .25s ease-in-out
+                &.enabled
+                    color: $black
+                &.active
+                    color: $light-green
+                &.disabled
+                    pointer-events: none
+                &:not(.disabled):hover
+                    color: $light-green
+            & + .steps-list__item::before
+                content: ''
+                display: inline-block
+                margin: 0 10px 0 16px
+                border: 6px solid transparent
+                border-left: 8px solid $gray

@@ -47,6 +47,9 @@
         opacity: 0.25
     &:active::after
         opacity: 0.4
-    &:disabled
+    &:disabled, &_disabled
+        pointer-events: none
         background: #EEE
+        &::after
+            display: none
 
