@@ -1,6 +1,6 @@
 import axios from 'axios'
 export class ApiFactoryService {
-    apiUrl = 'http://api-factory.simbirsoft1.com/api/db'
+    apiUrl = 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com/api/db'
     config = {
         headers: {
             'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',

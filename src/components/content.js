@@ -3,16 +3,6 @@ import img2 from '../assets/img/slide2.jpg'
 import img3 from '../assets/img/slide3.jpg'
 import img4 from '../assets/img/slide4.jpg'
 
-export const mainPageContent = {
-    overtitle: 'Каршеринг',
-    title: 'Need for drive',
-    subtitle: 'Поминутная аренда авто твоего города',
-    button: {
-        text: 'Забронировать',
-        size: 'large',
-        color: 'green'
-    },
-}
 export const slides = [
     {
         title: 'Бесплатная парковка',

@@ -6,7 +6,7 @@ export const ErrorIndicator = () => {
             <span className="error-indicator-status">Упс!</span>
             <span>что-то пошло не так</span>
             <span>(но мы уже отправили программиста исправить это)</span>
-            <span>Нажмите "F5" для перезагрузки страницы</span>
+            <span>Пожалуйста, обновите страницу</span>
         </div>
     )
 }

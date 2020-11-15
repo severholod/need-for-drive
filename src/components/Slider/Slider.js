@@ -9,16 +9,20 @@ export const Slider = () => {
     const onChangeSlide = newIndex => {
         if(newIndex < 0 || newIndex > slides.length - 1) {
             return false
-        } else {
-            changeSlide(newIndex)
         }
+        changeSlide(newIndex)
     }
-
+    const prevSlide = () => {
+        onChangeSlide(activeSlide - 1)
+    }
+    const nextSlide = () => {
+        onChangeSlide(activeSlide + 1)
+    }
     return (
         <section className="slider">
             <button
                 className="slider-nav slider-prev"
-                onClick={() => onChangeSlide(activeSlide - 1)} />
+                onClick={prevSlide} />
             <div className="slider-items">
                 { slides.map((slide, index) => {
                     return (
@@ -42,7 +46,7 @@ export const Slider = () => {
             </div>
             <button
                 className="slider-nav slider-next"
-                onClick={() => onChangeSlide(activeSlide + 1)} />
+                onClick={nextSlide} />
             <div className="slider-dots">
                 {
                     slides.map((_, index) => {

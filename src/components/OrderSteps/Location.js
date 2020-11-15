@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {Field} from 'formik'
 import {Map} from '../Map/Map'
 import {citiesLoaded, pointsLoaded, setCurrentCity, setCurrentPoint} from '../../redux/actions'
 import {connect} from 'react-redux'
+import {FieldCity} from '../FormFields/FieldCity'
+import {FieldCarPoint} from '../FormFields/FieldCarPoint'
 
 export let Location = (props) => {
     const {
@@ -51,86 +52,32 @@ export let Location = (props) => {
         setVisibilityPointsDropdown(false)
         dispatchCurrentPoint(value)
     }
+    const resetFields = () => {
+        setCurrentCity('city', '')
+        setCurrentPoint('carPoint', '')
+    }
     return (
         <div id="location">
             <div className="form-items">
                 <div className="form-item">
-                    <Field name="city" validate={required}>
-                        {({field}) => {
-                            const visibleCities = search(cities, field.value)
-                            return (
-                                <>
-                                    <label className="form-item__label form-item__label_large">Город</label>
-                                    <input
-                                        {...field}
-                                        type="text"
-                                        placeholder="Начните вводить город ..."
-                                        autoComplete="off"
-                                        className="form-item__input"
-                                        onFocus={() => setVisibilityCitiesDropdown(true)}
-                                        />
-                                    {
-                                        field.value &&
-                                        <span className="form-item__reset" onClick={() => {
-                                            setCurrentCity(field.name, '')
-                                            setCurrentPoint('carPoint', '')
-                                        }}/>
-                                    }
-                                    {
-                                        isVisibleCitiesDropdown && field.value &&
-                                        <ul className="form-item__dropdown">
-                                            {visibleCities.map((city, index) => (
-                                                <li
-                                                    key={`city_${index}`}
-                                                    onClick={() => setCurrentCity(field.name, city)}>
-                                                    {city}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    }
-                                </>
-                            )
-                        }}
-                    </Field>
+                    <FieldCity
+                        validator={required}
+                        search={search}
+                        cities={cities}
+                        setVisibilityCitiesDropdown={setVisibilityCitiesDropdown}
+                        isVisibleCitiesDropdown={isVisibleCitiesDropdown}
+                        setCurrentCity={setCurrentCity}
+                        resetFields={resetFields}/>
                 </div>
                 <div className="form-item">
-                    <Field name="carPoint" validate={required}>
-                        {({field}) => {
-                            const visiblePoints = search(pointsInCurrentCity, field.value)
-                            return (
-                                <>
-                                    <label className="form-item__label form-item__label_large">Пункт выдачи</label>
-                                    <input
-                                        {...field}
-                                        type="text"
-                                        placeholder="Начните вводить пункт ..."
-                                        autoComplete="off"
-                                        className="form-item__input"
-                                        disabled={!currentCity}
-                                        onFocus={() => setVisibilityPointsDropdown(true)}
-                                    />
-                                    {
-                                        field.value &&
-                                        <span className="form-item__reset" onClick={() => {
-                                            setCurrentPoint(field.name, '')
-                                        }}/>
-                                    }
-                                    {
-                                        isVisiblePointsDropdown && field.value &&
-                                        <ul className="form-item__dropdown">
-                                            {visiblePoints.map((point, index) => (
-                                                <li
-                                                    key={`city_${index}`}
-                                                    onClick={() => setCurrentPoint(field.name, point)}>
-                                                    {point}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    }
-                                </>
-                            )
-                        }}
-                    </Field>
+                    <FieldCarPoint
+                        validator={required}
+                        search={search}
+                        currentCity={currentCity}
+                        pointsInCurrentCity={pointsInCurrentCity}
+                        setVisibilityPointsDropdown={setVisibilityPointsDropdown}
+                        isVisiblePointsDropdown={isVisiblePointsDropdown}
+                        setCurrentPoint={setCurrentPoint}/>
                 </div>
             </div>
             <div className="map-wrap">
