@@ -2,11 +2,8 @@ import React from 'react';
 import {ErrorIndicator} from './ErrorIndicator';
 
 export class ErrorBoundary extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            hasError: false
-        }
+    state = {
+        hasError: false
     }
     componentDidCatch() {
         this.setState({
@@ -16,7 +13,9 @@ export class ErrorBoundary extends React.Component {
     render() {
         if (this.state.hasError) {
             return (
-                <ErrorIndicator />
+                <div className="error-wrap">
+                    <ErrorIndicator />
+                </div>
             )
         }
 

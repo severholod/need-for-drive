@@ -1,0 +1,44 @@
+.order-info
+    flex: 0 0 384px
+    max-width: 384px
+    flex-shrink: 0
+    border-left: 1px solid #eee
+    padding: 32px 64px 32px 32px
+    color: $black
+    &__title
+        font-weight: 500
+        font-size: 18px
+        text-align: right
+        margin-bottom: 25px
+    &__item
+        display: flex
+        align-items: flex-end
+        justify-content: space-between
+        margin-bottom: 16px
+        position: relative
+        z-index: 1
+        &-name
+            font-weight: 300
+            font-size: 14px
+            padding-right: 5px
+            background-color: #fff
+        &-value
+            text-align: right
+            font-weight: 300
+            font-size: 14px
+            color: $gray
+            padding-left: 5px
+            background-color: #fff
+        &::after
+            content: ''
+            display: block
+            width: 100%
+            border-bottom: 2px dotted $gray
+            position: absolute
+            left: 0
+            bottom: 4px
+            z-index: -1
+    &__price
+        margin-bottom: 32px
+        span
+            font-weight: bold

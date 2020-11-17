@@ -1,28 +1,42 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import { connect } from 'react-redux'
-import {changeSlide} from '../../redux/actions'
+import classNames from 'classnames'
+import {slides} from '../content'
 
-export let Slider = ({items, activeItem, onChangeSlide}) => {
+export const Slider = () => {
+    const [activeSlide, changeSlide] = useState(0)
+
+    const onChangeSlide = newIndex => {
+        if(newIndex < 0 || newIndex > slides.length - 1) {
+            return false
+        }
+        changeSlide(newIndex)
+    }
+    const prevSlide = () => {
+        onChangeSlide(activeSlide - 1)
+    }
+    const nextSlide = () => {
+        onChangeSlide(activeSlide + 1)
+    }
     return (
         <section className="slider">
             <button
                 className="slider-nav slider-prev"
-                onClick={() => onChangeSlide(activeItem - 1)}></button>
+                onClick={prevSlide} />
             <div className="slider-items">
-                { items.map((item, index) => {
+                { slides.map((slide, index) => {
                     return (
                         <div
                             key={`slide_${index}`}
-                            className={`slider-item ${index === activeItem ? 'active' : ''}`}
-                            style={ {backgroundImage: `url(${item.img})`} }>
+                            className={classNames('slider-item', {'active':index === activeSlide})}
+                            style={ {backgroundImage: `url(${slide.img})`} }>
                             <div className="slider-item__content">
-                                <div className="slider-item__title">{item.title}</div>
-                                <div className="slider-item__description">{item.description}</div>
+                                <div className="slider-item__title">{slide.title}</div>
+                                <div className="slider-item__description">{slide.description}</div>
                                 <Link to="/order">
                                     <button
-                                        className={`btn btn_${item.button.color} btn_${item.button.size}`}>
-                                        {item.button.text}
+                                        className={`btn btn_${slide.button.color} btn_${slide.button.size}`}>
+                                        {slide.button.text}
                                     </button>
                                 </Link>
                             </div>
@@ -32,15 +46,15 @@ export let Slider = ({items, activeItem, onChangeSlide}) => {
             </div>
             <button
                 className="slider-nav slider-next"
-                onClick={() => onChangeSlide(activeItem + 1)}></button>
+                onClick={nextSlide} />
             <div className="slider-dots">
                 {
-                    items.map((_, index) => {
+                    slides.map((_, index) => {
                         return (
                             <span
                                 key={`dot_${index}`}
-                                className={`slider-dot ${activeItem === index ? 'active' : ''}`}
-                                onClick={() => onChangeSlide(index)}>
+                                className={classNames('slider-dot', {'active':index === activeSlide})}
+                                onClick={() => changeSlide(index)}>
                             </span>
                         )
                     })
@@ -49,13 +63,3 @@ export let Slider = ({items, activeItem, onChangeSlide}) => {
         </section>
     )
 }
-const mapStateToProps = ({sliderItems, activeItem}) => {
-    return {
-        items: sliderItems,
-        activeItem
-    }
-}
-const mapDispatchToProps = {
-    onChangeSlide: changeSlide,
-}
-Slider = connect(mapStateToProps, mapDispatchToProps)(Slider)
