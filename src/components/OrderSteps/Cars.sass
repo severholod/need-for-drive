@@ -1,0 +1,28 @@
+.cars
+    &-list
+        display: flex
+        flex-wrap: wrap
+    &-item
+        flex: 0 0 50%
+        max-width: 50%
+        border: 1px solid #EEEEEE
+        padding: 16px
+        cursor: pointer
+        &__name
+            font-size: 18px
+            color: $black
+            margin-bottom: 3px
+        &__price
+            font-size: 14px
+            color: $gray
+        &__image
+            margin-top: 35px
+            margin-left: auto
+            max-width: 255px
+            text-align: right
+            img
+                max-width: 100%
+        &_active
+            border: 1px solid $light-green
+        &:hover
+            box-shadow: 0px 0px 12px rgba(173, 173, 173, 0.3)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 export class ApiFactoryService {
-    apiUrl = 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com/api/db'
+    apiUrl = 'http://api-factory.simbirsoft1.com/api/db'
     config = {
         headers: {
             'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
@@ -20,5 +20,9 @@ export class ApiFactoryService {
         return points.data.data.map(point => {
             return point
         })
+    }
+    getCars = async () => {
+        const cars = await this.getResource('/car')
+        return cars.data.data
     }
 }

@@ -27,3 +27,21 @@ export const setCurrentPoint = (point) => {
         payload: point
     }
 }
+export const carsLoaded = (cars) => {
+    return {
+        type: 'CARS_ARE_LOADED',
+        payload: cars
+    }
+}
+export const setCurrentCar = (car) => {
+    return {
+        type: 'SET_CURRENT_CAR',
+        payload: car
+    }
+}
+export const changeStep = (step) => {
+    return {
+        type: 'CHANGE_STEP',
+        payload: step
+    }
+}
