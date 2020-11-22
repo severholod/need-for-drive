@@ -5,7 +5,7 @@ import {carsLoaded, setCurrentCar} from '../../redux/actions'
 import {connect} from 'react-redux'
 import classNames from 'classnames'
 
-const imgUrl = 'http://api-factory.simbirsoft1.com'
+const imgUrl = 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com'
 export let Cars = (props) => {
     const {
         getCars,
@@ -64,7 +64,7 @@ export let Cars = (props) => {
                         <div className="cars-item__name">{car.name}</div>
                         <div className="cars-item__price">{car.priceMin} - {car.priceMax} ₽</div>
                         <div className="cars-item__image">
-                            <img src={`${imgUrl}${car.thumbnail.path}`} alt={car.name}/>
+                            <img crossOrigin="anonymous" referrerPolicy={origin} src={`${imgUrl}${car.thumbnail.path}`} alt={car.name}/>
                         </div>
                     </div>
                 ))}
