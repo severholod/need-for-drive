@@ -11,7 +11,7 @@ export let OrderSteps = ({apiFactoryService}) => {
 
     return (
         <Formik
-            initialValues={{}}
+            initialValues={{"carType": "all"}}
             onSubmit={(values) => console.log(values)}>
             {formProps => {
                 return (
@@ -28,11 +28,16 @@ export let OrderSteps = ({apiFactoryService}) => {
                                             getPoints={apiFactoryService.getPoints}
                                         />
                                     )}/>
-                                <Route path='/order/cars/' render={() => <Cars />}/>
+                                <Route path='/order/cars/'
+                                       render={() => (
+                                            <Cars
+                                                getCars={apiFactoryService.getCars}
+                                                carType={formProps.values.carType}/>
+                                       )}/>
                                 <Route component={ErrorIndicator}/>
                             </Switch>
                         </div>
-                        <OrderInfo isValid={formProps.isValid}/>
+                        <OrderInfo/>
                     </Form>
                 )
             }}

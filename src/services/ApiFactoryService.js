@@ -21,4 +21,8 @@ export class ApiFactoryService {
             return point
         })
     }
+    getCars = async () => {
+        const cars = await this.getResource('/car')
+        return cars.data.data
+    }
 }

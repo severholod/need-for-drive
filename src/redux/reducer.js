@@ -2,9 +2,11 @@ const initialState = {
     isMenuActive: false,
     cities: [],
     points: [],
+    cars: [],
     currentCity: null,
     currentPoint: null,
-
+    currentCar: {},
+    step: 0
 }
 
 export const reducer = (state = initialState, action) => {
@@ -34,6 +36,21 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentPoint: action.payload
+            }
+        case 'CARS_ARE_LOADED':
+            return {
+                ...state,
+                cars: action.payload
+            }
+        case 'SET_CURRENT_CAR':
+            return {
+                ...state,
+                currentCar: action.payload
+            }
+        case 'CHANGE_STEP':
+            return {
+                ...state,
+                step: action.payload
             }
         default:
             return state

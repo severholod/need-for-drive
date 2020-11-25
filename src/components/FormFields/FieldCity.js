@@ -24,6 +24,7 @@ export const FieldCity = (props) => {
                             placeholder="Начните вводить город ..."
                             autoComplete="off"
                             className="form-item__input"
+                            disabled={!Boolean(cities.length)}
                             onFocus={() => setVisibilityCitiesDropdown(true)}
                         />
                         {

@@ -1,9 +1,14 @@
 import React from 'react'
 import {StepsItem} from './StepsItem'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {isEmpty} from '../../utils'
+import {getCar, getPoint} from '../../redux/selectors'
+import {changeStep} from '../../redux/actions'
 
 export const StepsList = () => {
-    const point = useSelector(state => state.currentPoint)
+    const point = useSelector(getPoint)
+    const car = useSelector(getCar)
+    const dispatch = useDispatch()
     const steps = [
         {
             name: 'Местоположение',
@@ -18,7 +23,7 @@ export const StepsList = () => {
         {
             name: 'Дополнительно',
             link: '/order/additionally/',
-            disabled: true
+            disabled: isEmpty(car)
         },
         {
             name: 'Итого',
@@ -32,6 +37,7 @@ export const StepsList = () => {
                 {
                     steps.map((step, index) =>
                         <StepsItem
+                            onClick={() => dispatch(changeStep(index))}
                             key={`step_${index}`}
                             {...step} />
                     )
