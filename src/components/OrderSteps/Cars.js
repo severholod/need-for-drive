@@ -4,8 +4,8 @@ import {Loader} from '../Loader/Loader'
 import {carsLoaded, setCurrentCar} from '../../redux/actions'
 import {connect} from 'react-redux'
 import classNames from 'classnames'
+import {imgUrl} from '../../services/ApiFactoryService'
 
-const imgUrl = 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com'
 export let Cars = (props) => {
     const {
         getCars,
@@ -15,8 +15,9 @@ export let Cars = (props) => {
         setCurrentCar,
         carType
     } = props
-    const [isLoading, setLoadingStatus] = useState(true)
+    const [isLoading, setLoadingStatus] = useState(false)
     useEffect(() => {
+        setLoadingStatus(true)
         if (cars.length) {return false}
         getCars()
             .then(cars => {
@@ -31,14 +32,17 @@ export let Cars = (props) => {
         }
         return cars.filter(car => car.categoryId.id === key)
     }
-    const visibleCars = carFilter(cars, carType)
+    const [visibleCars, changeVisibleCars] = useState([])
+    useEffect(() => {
+        changeVisibleCars(carFilter(cars, carType))
+    }, [carType, cars])
     if(isLoading && !cars.length) {
         return (
             <Loader />
         )
     }
     return (
-        <div className="cars">
+        <div id="cars">
             <div className="form-items">
                 <div className="form-item">
                     <div className="form-item__radio">
@@ -64,7 +68,11 @@ export let Cars = (props) => {
                         <div className="cars-item__name">{car.name}</div>
                         <div className="cars-item__price">{car.priceMin} - {car.priceMax} ₽</div>
                         <div className="cars-item__image">
-                            <img crossOrigin="anonymous" referrerPolicy={origin} src={`${imgUrl}${car.thumbnail.path}`} alt={car.name}/>
+                            {
+                                car.thumbnail.path.includes('/files') &&
+                                <img crossOrigin="anonymous" referrerPolicy={origin} src={`${imgUrl}${car.thumbnail.path}`} alt={car.name}/>
+                            }
+
                         </div>
                     </div>
                 ))}
