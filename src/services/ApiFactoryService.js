@@ -1,4 +1,5 @@
 import axios from 'axios'
+export const imgUrl = 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com'
 export class ApiFactoryService {
     apiUrl = 'https://cors-anywhere.herokuapp.com/http://api-factory.simbirsoft1.com/api/db'
     config = {

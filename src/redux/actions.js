@@ -45,3 +45,27 @@ export const changeStep = (step) => {
         payload: step
     }
 }
+export const setStartDate = (startDate) => {
+    return {
+        type: 'SET_START_DATE',
+        payload: startDate
+    }
+}
+export const setEndDate = (endDate) => {
+    return {
+        type: 'SET_END_DATE',
+        payload: endDate
+    }
+}
+export const setDifferenceTime = (time) => {
+    return {
+        type: 'SET_DIFFERENCE_TIME',
+        payload: time
+    }
+}
+export const setOrderPrice = (price) => {
+    return {
+        type: 'SET_ORDER_PRICE',
+        payload: price
+    }
+}
