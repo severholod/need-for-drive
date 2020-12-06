@@ -3,16 +3,16 @@ import {useSelector} from 'react-redux'
 import {getCar, getStartDate} from '../../redux/selectors'
 import {imgUrl} from '../../services/ApiFactoryService'
 
+const dateOptions = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+}
 export const Total = () => {
     const car = useSelector(getCar)
     const startDate = useSelector(getStartDate)
-    const dateOptions = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric'
-    }
     return (
         <div id="total" className="total">
             <div className="total-items">

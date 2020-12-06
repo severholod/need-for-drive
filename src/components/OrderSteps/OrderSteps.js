@@ -9,15 +9,15 @@ import {Cars} from './Cars'
 import {Additionally} from './Additionally'
 import {Total} from './Total'
 
+const initialValues = {
+    "carType": "all",
+    "carColor": "",
+    "tariff": "",
+    "fullTank": false,
+    "babyChair": false,
+    "rightHand": false
+}
 export let OrderSteps = ({apiFactoryService}) => {
-    const initialValues = {
-        "carType": "all",
-        "carColor": "",
-        "tariff": "",
-        "fullTank": false,
-        "babyChair": false,
-        "rightHand": false
-    }
     return (
         <Formik
             initialValues={initialValues}

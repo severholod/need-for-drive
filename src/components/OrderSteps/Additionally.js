@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react'
 import {Field} from 'formik'
 import {useDispatch, useSelector} from 'react-redux'
@@ -5,6 +6,7 @@ import {getCar, getEndDate, getStartDate} from '../../redux/selectors'
 import DatePicker from 'react-datepicker'
 import "../../../node_modules/react-datepicker/dist/react-datepicker.min.css"
 import {setDifferenceTime, setEndDate, setOrderPrice, setStartDate} from '../../redux/actions'
+import {AdditionallyCheckboxes} from './AdditionallyCheckboxes'
 
 export const Additionally = (props) => {
     const car = useSelector(getCar)
@@ -20,13 +22,18 @@ export const Additionally = (props) => {
     const dispatchEndDate = date => {
         dispatch(setEndDate(date))
     }
-    // const [endDate, setEndDate] = useState(null)
     const minDate = new Date()
     const minStartTime = () => {
         if (startDate) {
             return startDate.getDate() === minDate.getDate() ? minDate : new Date().setHours(0, 0)
         }
         return minDate
+    }
+    const maxStartTime = () => {
+        if (endDate) {
+            return new Date().setHours(endDate.getHours() - 1, endDate.getMinutes())
+        }
+        return  new Date().setHours(23, 59)
     }
     const minEndTime = () => {
         if (endDate) {
@@ -74,12 +81,10 @@ export const Additionally = (props) => {
     }
     useEffect(() => {
         getDifferenceTime()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startDate, endDate])
     useEffect(() => {
         const price = getPrice()
         dispatch(setOrderPrice(price))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startDate, endDate, props])
     return (
         <div id="additionally">
@@ -112,8 +117,9 @@ export const Additionally = (props) => {
                         showTimeSelect
                         isClearable
                         minDate={minDate}
+                        maxDate={endDate ? endDate : undefined}
                         minTime={minStartTime()}
-                        maxTime={new Date().setHours(23, 59)}
+                        maxTime={maxStartTime()}
                     />
                 </div>
                 <div className="form-item mb-30">
@@ -133,32 +139,7 @@ export const Additionally = (props) => {
                         maxTime={new Date().setHours(23, 59)}
                     />
                 </div>
-                <div className="form-items__title">Тариф</div>
-                <div className="form-item">
-                    <div className="form-item__radio form-item__radio_w100">
-                        <Field id="tariff-min" type="radio" name="tariff" value="Поминутно"/>
-                        <label htmlFor="tariff-min">Поминутно, 7₽/мин</label>
-                    </div>
-                    <div className="form-item__radio form-item__radio_w100">
-                        <Field id="tariff-day" type="radio" name="tariff" value="На сутки"/>
-                        <label htmlFor="tariff-day">На сутки, 1999 ₽/сутки</label>
-                    </div>
-                </div>
-                <div className="form-items__title">Доп услуги</div>
-                <div className="form-item">
-                    <div className="form-item__radio form-item__radio_w100">
-                        <Field id="fullTank" type="checkbox" name="fullTank"/>
-                        <label htmlFor="fullTank">Полный бак, 500р</label>
-                    </div>
-                    <div className="form-item__radio form-item__radio_w100">
-                        <Field id="babyChair" type="checkbox" name="babyChair"/>
-                        <label htmlFor="babyChair">Детское кресло, 200р</label>
-                    </div>
-                    <div className="form-item__radio form-item__radio_w100">
-                        <Field id="rightHand" type="checkbox" name="rightHand"/>
-                        <label htmlFor="rightHand">Правый руль, 1600р</label>
-                    </div>
-                </div>
+                <AdditionallyCheckboxes />
             </div>
         </div>
     )

@@ -15,16 +15,19 @@ export const OrderInfo = (props) => {
     const orderPrice = useSelector(getPrice)
     const differenceTime = useSelector(getDifferenceTime)
     const dispatch = useDispatch()
-    const fields = [
-        {name: 'Пункт выдачи', value: point ? `${city}, ${point}` : ''},
-        {name: 'Модель', value: car.name},
-        {name: 'Цвет', value: props.carColor},
-        {name: 'Длительность аренды', value: differenceTime},
-        {name: 'Тариф', value: props.tariff},
-        {name: 'Полный бак', value: props.fullTank ? 'Да' : false},
-        {name: 'Детское кресло', value: props.babyChair ? 'Да' : false},
-        {name: 'Правый руль', value: props.rightHand ? 'Да' : false},
-    ]
+    const validPrice = !(car.priceMin <= orderPrice && orderPrice <= car.priceMax)
+    const fields = useMemo(() => {
+        return [
+            {name: 'Пункт выдачи', value: point ? `${city}, ${point}` : ''},
+            {name: 'Модель', value: car.name},
+            {name: 'Цвет', value: props.carColor},
+            {name: 'Длительность аренды', value: differenceTime},
+            {name: 'Тариф', value: props.tariff},
+            {name: 'Полный бак', value: props.fullTank ? 'Да' : false},
+            {name: 'Детское кресло', value: props.babyChair ? 'Да' : false},
+            {name: 'Правый руль', value: props.rightHand ? 'Да' : false},
+        ]
+    }, [point, car, props, city, differenceTime])
     const buttonDetail = useMemo(() => {
         return [
             {
@@ -40,7 +43,7 @@ export const OrderInfo = (props) => {
             {
                 text: 'Итого',
                 link: '/total/',
-                disabled: !(car.priceMin <= orderPrice && orderPrice <= car.priceMax),
+                disabled: validPrice,
             },
             {
                 text: 'Заказать',
@@ -48,7 +51,7 @@ export const OrderInfo = (props) => {
                 disabled: false
             }
         ]
-    }, [point, car, orderPrice])
+    }, [point, car, validPrice])
     const handlerLinkClick = () => dispatch(changeStep(step + 1))
     return (
         <div className="order-info">
@@ -69,7 +72,7 @@ export const OrderInfo = (props) => {
                   onClick={handlerLinkClick}>
                     {buttonDetail[step].text}
             </Link>
-            { !!orderPrice && !(car.priceMin <= orderPrice && orderPrice <= car.priceMax) &&
+            { !!orderPrice && validPrice &&
                 <div className="order-info__alert">Сумма заказа на данное авто должна составлять от {car.priceMin} до {car.priceMax} ₽</div>
             }
         </div>
