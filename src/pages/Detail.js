@@ -58,8 +58,12 @@ export let Detail = ({apiFactoryService}) => {
                                     <div className="total-items">
                                         <div className="order-status">Ваш заказ подтверждён</div>
                                         <div className="total-item total-carName">{order.carId.name}</div>
-                                        <div className="total-item total-carNumber"><span>{order.carId.number}</span></div>
-                                        <div className="total-item total-info"><span>Топливо &nbsp;</span>{order.carId.tank}%</div>
+                                        { !!order.carId.number &&
+                                            <div className="total-item total-carNumber"><span>{order.carId.number}</span></div>
+                                        }
+                                        { !!order.carId.tank &&
+                                            <div className="total-item total-info"><span>Топливо &nbsp;</span>{order.carId.tank}%</div>
+                                        }
                                         <div className="total-item total-info">
                                             <span>Доступна с &nbsp;</span>{new Date(order.dateFrom).toLocaleString('ru', dateOptions)}
                                         </div>

@@ -9,7 +9,7 @@ import {ErrorIndicator} from '../ErrorBoundary/ErrorIndicator'
 export const App = () => {
     return (
         <Switch>
-            <Route path="/need-for-drive/" component={Main} exact/>
+            <Route path="/" component={Main} exact/>
             <Route path="/order/" component={Order}/>
             <Route path="/detail/" component={Detail}/>
             <Route component={ErrorIndicator}/>
