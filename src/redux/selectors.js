@@ -6,3 +6,5 @@ export const getStartDate = state => state.startDate
 export const getEndDate = state => state.endDate
 export const getDifferenceTime = state => state.differenceTime
 export const getPrice = state => state.orderPrice
+export const getTariffs = state => state.tariffs
+export const getTariff = state => state.currentTariff

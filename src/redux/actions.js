@@ -69,3 +69,15 @@ export const setOrderPrice = (price) => {
         payload: price
     }
 }
+export const tariffsLoaded = (tariffs) => {
+    return {
+        type: 'TARIFFS_ARE_LOADED',
+        payload: tariffs
+    }
+}
+export const setCurrentTariff = (tariff) => {
+    return {
+        type: 'SET_CURRENT_TARIFF',
+        payload: tariff
+    }
+}

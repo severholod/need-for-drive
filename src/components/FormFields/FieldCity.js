@@ -4,13 +4,15 @@ import React from 'react'
 export const FieldCity = (props) => {
     const {
         validator,
-        search,
         cities,
         setVisibilityCitiesDropdown,
         isVisibleCitiesDropdown,
         setCurrentCity,
         resetFields
     } = props
+    const search = (data = [], key = '') => {
+        return data.filter(el => el.name.toLowerCase().includes(key.toLowerCase()))
+    }
     return (
         <Field name="city" validate={validator}>
             {({field}) => {
@@ -38,7 +40,7 @@ export const FieldCity = (props) => {
                                     <li
                                         key={`city_${index}`}
                                         onClick={() => setCurrentCity(field.name, city)}>
-                                        {city}
+                                        {city.name}
                                     </li>
                                 ))}
                             </ul>

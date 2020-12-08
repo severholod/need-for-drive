@@ -2,16 +2,26 @@
 import React, {useEffect} from 'react'
 import {Field} from 'formik'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCar, getEndDate, getStartDate} from '../../redux/selectors'
+import {getCar, getEndDate, getStartDate, getTariff, getTariffs} from '../../redux/selectors'
 import DatePicker from 'react-datepicker'
 import "../../../node_modules/react-datepicker/dist/react-datepicker.min.css"
-import {setDifferenceTime, setEndDate, setOrderPrice, setStartDate} from '../../redux/actions'
+import {
+    setCurrentTariff,
+    setDifferenceTime,
+    setEndDate,
+    setOrderPrice,
+    setStartDate,
+    tariffsLoaded
+} from '../../redux/actions'
 import {AdditionallyCheckboxes} from './AdditionallyCheckboxes'
+import {getDifTime} from '../../utils'
 
 export const Additionally = (props) => {
     const car = useSelector(getCar)
     const startDate = useSelector(getStartDate)
     const endDate = useSelector(getEndDate)
+    const currentTariff = useSelector(getTariff)
+    const tariffs = useSelector(getTariffs)
     const dispatch = useDispatch()
     const dispatchStartDate = date => {
         if (!date) {
@@ -45,13 +55,7 @@ export const Additionally = (props) => {
     }
     const getDifferenceTime = () => {
         if (startDate && endDate) {
-            let differenceDay = 0
-            let differenceHours = Math.round((endDate - startDate) / 1000 / 60 / 60)
-            if (differenceHours >= 24) {
-                differenceDay = Math.floor(differenceHours / 24)
-                differenceHours = differenceHours % 24
-            }
-            const differenceTime = `${differenceDay ? differenceDay + 'д': ''} ${differenceHours}ч`
+            const differenceTime = getDifTime(startDate, endDate)
             dispatch(setDifferenceTime(differenceTime))
         } else {
             dispatch(setDifferenceTime(''))
@@ -61,13 +65,12 @@ export const Additionally = (props) => {
         if(endDate && startDate) {
             let price
             const differenceMinutes = Math.round((endDate - startDate) / 1000 / 60)
-            // использование консутркции switch-case больше подходит в случае добавления большего количества тарифов
-            switch (props.tariff) {
-                case 'Поминутно':
-                    price = differenceMinutes * 7
+            switch (currentTariff.id) {
+                case '5e26a0d2099b810b946c5d85':
+                    price = differenceMinutes * currentTariff.price
                     break
-                case 'На сутки':
-                    price = Math.ceil(differenceMinutes / 60 / 24) * 1999
+                case '5e26a0e2099b810b946c5d86':
+                    price = Math.ceil(differenceMinutes / 60 / 24) * currentTariff.price
                     break
                 default:
                     price = 0
@@ -85,7 +88,14 @@ export const Additionally = (props) => {
     useEffect(() => {
         const price = getPrice()
         dispatch(setOrderPrice(price))
-    }, [startDate, endDate, props])
+    }, [startDate, endDate, props, currentTariff])
+    useEffect(() => {
+        props.getTariffs()
+            .then(tariffs => dispatch(tariffsLoaded(tariffs)))
+    }, [])
+    const tariffClickHandler = (tariff) => {
+        dispatch(setCurrentTariff(tariff))
+    }
     return (
         <div id="additionally">
             <div className="form-items">
@@ -138,6 +148,22 @@ export const Additionally = (props) => {
                         minTime={minEndTime()}
                         maxTime={new Date().setHours(23, 59)}
                     />
+                </div>
+                <div className="form-items__title">Тариф</div>
+                <div className="form-item">
+                    {
+                        tariffs.map((tariff, index) => (
+                            <div className="form-item__radio form-item__radio_w100" key={`tariff_${index}`}>
+                                <Field id={`tariff-${index}`}
+                                       type="radio" name="tariff"
+                                       onChange={() => tariffClickHandler(tariff)}
+                                       checked={tariff.id === currentTariff.id}/>
+                                <label htmlFor={`tariff-${index}`}>
+                                    {`${tariff.rateTypeId.name}, ${tariff.price}₽/${tariff.rateTypeId.unit}`}
+                                </label>
+                            </div>
+                        ))
+                    }
                 </div>
                 <AdditionallyCheckboxes />
             </div>

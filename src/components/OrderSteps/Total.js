@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux'
 import {getCar, getStartDate} from '../../redux/selectors'
 import {imgUrl} from '../../services/ApiFactoryService'
 
-const dateOptions = {
+export const dateOptions = {
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Form, Formik} from 'formik'
 import {Route, Switch} from 'react-router-dom'
 import {Location} from './Location'
@@ -8,20 +8,49 @@ import {withApiFactoryService} from '../../services/withApiFactoryService'
 import {Cars} from './Cars'
 import {Additionally} from './Additionally'
 import {Total} from './Total'
+import {useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {getCar, getCity, getEndDate, getPoint, getPrice, getStartDate, getTariff} from '../../redux/selectors'
 
 const initialValues = {
     "carType": "all",
     "carColor": "",
-    "tariff": "",
     "fullTank": false,
     "babyChair": false,
     "rightHand": false
 }
 export let OrderSteps = ({apiFactoryService}) => {
+    const city = useSelector(getCity)
+    const point = useSelector(getPoint)
+    const car = useSelector(getCar)
+    const orderPrice = useSelector(getPrice)
+    const startDate = useSelector(getStartDate)
+    const endDate = useSelector(getEndDate)
+    const tariff = useSelector(getTariff)
+    const history = useHistory()
+    const [orderIsSent, setSendStatus] = useState(false)
+    const createOrder = (values) => {
+        setSendStatus(true)
+        const body = {
+            ...values,
+            city,
+            point,
+            car,
+            orderPrice,
+            startDate,
+            endDate,
+            tariff
+        }
+        apiFactoryService.sendOrder(body)
+            .then(id => {
+                setSendStatus(false)
+                history.push(`/detail/#${id}`)
+            })
+    }
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={(values) => console.log(values)}>
+            onSubmit={createOrder}>
             {formProps => {
                 return (
                     <Form className="order-content">
@@ -41,12 +70,12 @@ export let OrderSteps = ({apiFactoryService}) => {
                                 )}/>
                                <Route path='/order/additionally/' render={() => (
                                    <Additionally
-                                       tariff={formProps.values.tariff}
+                                       getTariffs={apiFactoryService.getTariffs}
                                        fullTank={formProps.values.fullTank}
                                        babyChair={formProps.values.babyChair}
                                        rightHand={formProps.values.rightHand}/>
                                )}/>
-                               <Route path='/order/total' render={() => (
+                               <Route path='/order/total/' render={() => (
                                    <Total
                                     fullTank={formProps.values.fullTank}/>
                                )}/>
@@ -54,8 +83,8 @@ export let OrderSteps = ({apiFactoryService}) => {
                             </Switch>
                         </div>
                         <OrderInfo
+                            request={orderIsSent}
                             carColor={formProps.values.carColor}
-                            tariff={formProps.values.tariff}
                             fullTank={formProps.values.fullTank}
                             babyChair={formProps.values.babyChair}
                             rightHand={formProps.values.rightHand}/>
