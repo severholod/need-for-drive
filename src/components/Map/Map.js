@@ -6,7 +6,7 @@ import classNames from 'classnames'
 
 const apiKey = '5e01c479-39d7-4233-9b65-74d453cac7fa'
 
-export const Map = ({currentCity, currentPoint, points, setPoint, setCity}) => {
+export const Map = ({currentCity, currentPoint, points, cities, setPoint, setCity}) => {
 
     const [map, setMap] = useState({})
     const [mapReady, setMapReady] = useState(false)
@@ -15,7 +15,7 @@ export const Map = ({currentCity, currentPoint, points, setPoint, setCity}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const updateCenter = async () => {
-        const center = await getCenter(currentCity, currentPoint)
+        const center = await getCenter(currentCity.name, currentPoint.address)
         if(center && mapReady) {
             map.setCenter(center, currentPoint ? 14 : 12)
         }
@@ -91,8 +91,8 @@ export const Map = ({currentCity, currentPoint, points, setPoint, setCity}) => {
         return getCoords(res)
     }
     const setValues = (index) => {
-        setCity('city', points[index].cityId.name)
-        setPoint('carPoint', points[index].address)
+        setCity('city', cities.find(city => city.id === points[index].cityId.id))
+        setPoint('carPoint', points[index])
     }
     return (
         <>

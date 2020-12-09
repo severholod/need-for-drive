@@ -4,13 +4,15 @@ import React from 'react'
 export const FieldCarPoint = (props) => {
     const {
         validator,
-        search,
         currentCity,
         pointsInCurrentCity,
         setVisibilityPointsDropdown,
         isVisiblePointsDropdown,
         setCurrentPoint
     } = props
+    const search = (data = [], key = '') => {
+        return data.filter(el => el.address.toLowerCase().includes(key.toLowerCase()))
+    }
     return (
         <Field name="carPoint" validate={validator}>
             {({field}) => {
@@ -40,7 +42,7 @@ export const FieldCarPoint = (props) => {
                                     <li
                                         key={`city_${index}`}
                                         onClick={() => setCurrentPoint(field.name, point)}>
-                                        {point}
+                                        {point.address}
                                     </li>
                                 ))}
                             </ul>

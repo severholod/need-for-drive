@@ -31,24 +31,19 @@ export let Location = (props) => {
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const search = (data = [], key = '') => {
-        return data.filter(el => el.toLowerCase().includes(key.toLowerCase()))
-    }
-
     const [isVisibleCitiesDropdown, setVisibilityCitiesDropdown] = useState(false)
     const [isVisiblePointsDropdown, setVisibilityPointsDropdown] = useState(false)
     const [pointsInCurrentCity, dispatchPointsInCurrentCity] = useState([])
 
     const setCurrentCity = (field, value) => {
-        setFieldValue(field, value)
+        setFieldValue(field, value.name)
         setVisibilityCitiesDropdown(false)
         dispatchCurrentCity(value)
-        const pointsList = points.filter(point => point.cityId.name === value).map(point => point.address)
+        const pointsList = points.filter(point => point.cityId.name === value.name)
         dispatchPointsInCurrentCity(pointsList)
     }
     const setCurrentPoint = (field, value) => {
-        setFieldValue(field, value)
+        setFieldValue(field, value.address)
         setVisibilityPointsDropdown(false)
         dispatchCurrentPoint(value)
     }
@@ -62,7 +57,6 @@ export let Location = (props) => {
                 <div className="form-item">
                     <FieldCity
                         validator={required}
-                        search={search}
                         cities={cities}
                         setVisibilityCitiesDropdown={setVisibilityCitiesDropdown}
                         isVisibleCitiesDropdown={isVisibleCitiesDropdown}
@@ -72,7 +66,6 @@ export let Location = (props) => {
                 <div className="form-item">
                     <FieldCarPoint
                         validator={required}
-                        search={search}
                         currentCity={currentCity}
                         pointsInCurrentCity={pointsInCurrentCity}
                         setVisibilityPointsDropdown={setVisibilityPointsDropdown}
@@ -87,6 +80,7 @@ export let Location = (props) => {
                     <Map
                         currentCity={currentCity}
                         points={points}
+                        cities={cities}
                         currentPoint={currentPoint}
                         setPoint={setCurrentPoint}
                         setCity={setCurrentCity}/>
@@ -110,4 +104,3 @@ const mapDispatchToProps = {
 }
 
 Location = connect(mapStateToProps, mapDispatchToProps)(Location)
-

@@ -18,7 +18,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ErrorBoundary>
             <ApiFactoryProvider value={apiFactoryService}>
-                <Router>
+                <Router basename={'/need-for-drive'}>
                     <App />
                 </Router>
             </ApiFactoryProvider>

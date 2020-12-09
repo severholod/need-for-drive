@@ -3,9 +3,11 @@ const initialState = {
     cities: [],
     points: [],
     cars: [],
-    currentCity: null,
-    currentPoint: null,
+    currentCity: {},
+    currentPoint: {},
     currentCar: {},
+    tariffs: [],
+    currentTariff: {},
     step: 0,
     startDate: null,
     endDate: null,
@@ -75,6 +77,16 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderPrice: action.payload
+            }
+        case 'TARIFFS_ARE_LOADED':
+            return {
+                ...state,
+                tariffs: action.payload
+            }
+        case 'SET_CURRENT_TARIFF':
+            return {
+                ...state,
+                currentTariff: action.payload
             }
         default:
             return state

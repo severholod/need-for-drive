@@ -19,7 +19,7 @@ export const StepsList = () => {
         {
             name: 'Модель',
             link: '/order/cars/',
-            disabled: !Boolean(point)
+            disabled: isEmpty(point)
         },
         {
             name: 'Дополнительно',
